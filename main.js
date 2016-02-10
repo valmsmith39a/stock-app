@@ -16,7 +16,6 @@ app.controller('addStocksCtrl', function($scope, $state, Stock) {
     .then(function(stocksFound) {
       $scope.stocksFound = stocksFound.data;
       console.log('stocks Found is: ', $scope.stocksFound);
-      debugger;
     }); 
   }; 
 
@@ -33,7 +32,7 @@ app.controller('listStocksCtrl', function($scope, $state, Stock) {
   console.log('list stocks Ctrl');
   $scope.stocksTracked = Stock.getAllAddedStocks(); 
   console.log('all tracked stocks', $scope.stocksTracked);
-  
+
   $scope.deleteStock = function(index) {
     var testArray = Stock.deleteTrackedStock();
     console.log('array is now after delete', testArray);

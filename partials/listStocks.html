@@ -6,21 +6,12 @@
 </head>
 <body>
   <h1>Stocks Tracking</h1>
-  <!-- <input ng-model="stocksFound.companyInput" type="text" placeholder="Stock quote"> -->
-  <!-- <button ng-click="findStock()">Find</button> -->
   <table>
     <tbody>
       <tr ng-repeat='stock in stocksTracked' ng-if='stocksTracked.length'> 
         <td>{{stock.data.Name}}</td>
-        <td><button ng-click='deleteStock($index)'>Delete</button><td>
-
-        <!-- <td>{{stock.Name}}</td> -->
-        <!-- <td ng-if='key !== "companyInput"'><button ng-click='addStock()' ng-if='key !== "companyInput"'> Add </button></td> -->
+        <td><button ng-click='deleteStock($index)'>Delete</button><td>        
       </tr> 
-      <!-- <tr ng-repeat='stock in stocksFoundArray'>{{stock.Name}}</tr> -->
-      <!--  <tr ng-repeat='(key, value) in newStock' ng-if='key !== "quoteInput"' > 
-        <td>{{key}} : {{value}} </td>
-      </tr>   -->
     </tbody>
   </table>
 </body>
