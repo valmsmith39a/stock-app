@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stocks</title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="main.js"></script>
+</head>
+<body ng-app='stocks'>
+  <div class="container">
+    <button ui-sref='home' class="btn btn-default">Home</button>
+    <button ui-sref='liststocks' class="btn btn-default">List</button>
+    <button ui-sref='addstocks' class="btn btn-default">Add</button>
+    <!-- where ui router view displayed  -->
+    <ui-view></ui-view>
+  </div>
+</body>
+</html>

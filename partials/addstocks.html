@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Stocks</title>
+</head>
+<body>
+  <h1>Add Stocks</h1>
+  <input ng-model="newStock.quote" type="text" placeholder="Stock quote">
+  <button ng-click="findStock()">Find</button>
+  <table>
+    <thead>
+      <tr>
+        <th ng-repeat='(key, value) in stocks[0]'>{{key}}</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='(key, stock) in stocks'>
+        <td ng-repeat='value in stock'>{{value}}</td>  
+      </tr>      
+    </tbody>
+  </table>
+</body>
+</html>
