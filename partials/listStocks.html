@@ -7,9 +7,20 @@
 <body>
   <h1>Stocks Tracking</h1>
   <table>
+    <thead>
+      <tr>
+        <td>Symbol</td>
+        <td>Name</td>
+        <td>Last Price</td>
+        <td>Percent Changed</td>
+      </tr>
+    </thead>
     <tbody>
       <tr ng-repeat='stock in stocksTracked' ng-if='stocksTracked.length'> 
+        <td>{{stock.data.Symbol}}</td>
         <td>{{stock.data.Name}}</td>
+        <td>{{stock.data.LastPrice | currency}}</td>
+        <td>{{stock.data.ChangePercent | currency}}</td>
         <td><button ng-click='deleteStock($index)'>Delete</button><td>        
       </tr> 
     </tbody>

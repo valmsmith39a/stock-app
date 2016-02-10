@@ -10,7 +10,6 @@
   <button ng-click="findStock()">Find</button>
   <table>
     <tbody>
-      <!-- ng-if='stock. !== "companyInput"' -->
       <tr ng-repeat='stock in stocksFound' ng-if='stocksFound.length'> 
         <td>{{stock.Name}}</td>
         <td><button ng-click='getStockData(stock, $index)'>Add</button><td>
