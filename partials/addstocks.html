@@ -10,15 +10,11 @@
   <button ng-click="findStock()">Find</button>
   <table>
     <tbody>
-      <tr ng-repeat='stock in stocksFound'  ng-if='key !== "companyInput"'> 
-        <td ng-click='getStockData(stock, $index)'>{{stock.Name}}</td>
-        <!-- <td>{{stock.Name}}</td> -->
-        <!-- <td ng-if='key !== "companyInput"'><button ng-click='addStock()' ng-if='key !== "companyInput"'> Add </button></td> -->
+      <!-- ng-if='stock. !== "companyInput"' -->
+      <tr ng-repeat='stock in stocksFound' ng-if='stocksFound.length'> 
+        <td>{{stock.Name}}</td>
+        <td><button ng-click='getStockData(stock, $index)'>Add</button><td>
       </tr> 
-      <!-- <tr ng-repeat='stock in stocksFoundArray'>{{stock.Name}}</tr> -->
-      <!--  <tr ng-repeat='(key, value) in newStock' ng-if='key !== "quoteInput"' > 
-        <td>{{key}} : {{value}} </td>
-      </tr>   -->
     </tbody>
   </table>
 </body>
