@@ -6,18 +6,19 @@
 </head>
 <body>
   <h1>Add Stocks</h1>
-  <input ng-model="newStock.quote" type="text" placeholder="Stock quote">
+  <input ng-model="stocksFound.companyInput" type="text" placeholder="Stock quote">
   <button ng-click="findStock()">Find</button>
   <table>
-    <thead>
-      <tr>
-        <th ng-repeat='(key, value) in stocks[0]'>{{key}}</th>        
-      </tr>
-    </thead>
     <tbody>
-      <tr ng-repeat='(key, stock) in stocks'>
-        <td ng-repeat='value in stock'>{{value}}</td>  
-      </tr>      
+      <tr ng-repeat='stock in stocksFound'  ng-if='key !== "companyInput"'> 
+        <td ng-click='getStockData(stock, $index)'>{{stock.Name}}</td>
+        <!-- <td>{{stock.Name}}</td> -->
+        <!-- <td ng-if='key !== "companyInput"'><button ng-click='addStock()' ng-if='key !== "companyInput"'> Add </button></td> -->
+      </tr> 
+      <!-- <tr ng-repeat='stock in stocksFoundArray'>{{stock.Name}}</tr> -->
+      <!--  <tr ng-repeat='(key, value) in newStock' ng-if='key !== "quoteInput"' > 
+        <td>{{key}} : {{value}} </td>
+      </tr>   -->
     </tbody>
   </table>
 </body>

@@ -6,23 +6,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('home', {url:'/', templateUrl:'./partials/home.html'})
   .state('addstocks', {url:'/addstocks', templateUrl:'./partials/addstocks.html', controller:'addStocksCtrl'})
-  .state('liststocks', {url:'/liststocks', templateUrl:'./partials/liststocks.html', controller:'listStocksCtrl'})
+  //.state('liststocks', {url:'/liststocks', templateUrl:'./partials/liststocks.html', controller:'listStocksCtrl'})
   $urlRouterProvider.otherwise('/'); 
 });
 
-app.controller('addStocksCtrl', function($scope, $state, FindStock) {
-  console.log('in add stocksCtrl');
-  $scope.findStock = function(){
-    console.log('Find stock');
-    console.log('$state', $state);
-    FindStock.find($scope);
+app.controller('addStocksCtrl', function($scope, $state, Stock) {
+  $scope.findStock = function() {
+    Stock.findByCompany($scope)
+    .then(function(stocksFound) {
+      $scope.stocksFound = stocksFound.data;
+    }); 
+  }; 
 
-    
-  };
-})
+  $scope.getStockData = function(stockSelected, index) {
+    $scope.stockSelected = stockSelected;
+    Stock.getStockData($scope)
+    .then(function(stockData) {
+      Stock.addStock(stockData);  
+    }); // FindStock.find()... 
+ }; // $scope.getStockData... 
+}); // /* app.controller()... */
 
-/*
-app.controller('listStocksCtrl', function($scope, $state) {
+app.controller('listStocksCtrl', function($scope, $state, Stock) {
   console.log('list stocks Ctrl');
   $scope.doAThing = function(){
     console.log('thing done');
@@ -30,51 +35,25 @@ app.controller('listStocksCtrl', function($scope, $state) {
     $state.go('home');
   };
 });
-*/
 
-app.service('FindStock', function() {
-  this.find = function($scope) {
-    console.log('inside FindStock this.find()');
-  
-    debugger;
-    console.log('stock quote is: ', ($scope.newStock.quote));
-
-  } 
-  /*
-  $localStorage.$default({
-    potions:[]
-  });
-  this.list = potions;
-  this.list = [
-    {name:'growth', color:'green', cost:20.00},
-    {name:'speed', color:'red', cost:30.00},
-    {name:'happy', color:'blue', cost:40.00},
-    {name:'energy', color:'yellow', cost:60.00, fruit:'strawberries'}
-  ];
-  this.add = function(potion) {
-    this.list.push(potion);
-  }
-  this.remove = function(potion) {
-    var index = this.list.indexOf(potion);
-    this.list.splice(index, 1);
-  }
-  */
+app.service('Stock', function($http) {
+  this.arrayOfStocks = [];
+  this.findByCompany = function($scope) {
+    /* No 'Access-Control-Allow-Origin' header error. Use jsonp to work around */
+    return $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Lookup/jsonp?input=${$scope.stocksFound.companyInput}&callback=JSON_CALLBACK`);    
+  }; 
+  this.getStockData = function($scope) {
+    return $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=${$scope.stockSelected.Symbol}&callback=JSON_CALLBACK`);    
+  };
+  this.addStock = function(stockObject) {
+    this.arrayOfStocks.push(stockObject);
+    return this.arrayOfStocks; 
+  }; 
+  this.getAllAddedStocks = function() {
+    return this.arrayOfStocks;
+  };
 });
 
-
-
-/*
-app.controller('testCtrl', function($scope, $http) {
-  console.log('testCtrl');
-  $http.jsonp('http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=AAPL&callback=JSON_CALLBACK')   // if get error re to changing source error, we can use jsonp which wraps data in a function
-  .then(function(res) {
-    console.log('success', res);
-  }, function(res){
-    console.log('error:', res);
-  });
- });
-});
-*/
 
 
 
