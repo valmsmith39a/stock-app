@@ -1,0 +1,23 @@
+body {
+  background-image: url('http://kiplinggallery.com/wp-content/uploads/2014/11/Adamo-Wall-Street-Bull-30x60.jpg');
+  background-size: 100vw;
+  background-repeat:no-repeat;
+  color: white;
+}
+
+#find-button {
+  color:black;
+}
+
+#stock-input {
+  color:black;
+}
+
+.add-button {
+  color:black;
+  background-color:white;
+}
+
+.list-data {
+  color: black;
+}

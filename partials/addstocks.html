@@ -6,13 +6,13 @@
 </head>
 <body>
   <h1>Add Stocks</h1>
-  <input ng-model="stocksFound.companyInput" type="text" placeholder="Stock quote">
-  <button ng-click="findStock()">Find</button>
+  <input id='stock-input'ng-model="stocksFound.companyInput" type="text" placeholder="Stock quote">
+  <button ng-click="findStock()" id='find-button'>Find</button>
   <table>
     <tbody>
       <tr ng-repeat='stock in stocksFound' ng-if='stocksFound.length'> 
         <td>{{stock.Name}}</td>
-        <td><button ng-click='getStockData(stock, $index)'>Add</button><td>
+        <td><button class='add-button' ng-click='getStockData(stock, $index)'>Add</button><td>
       </tr> 
     </tbody>
   </table>

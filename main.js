@@ -15,7 +15,6 @@ app.controller('addStocksCtrl', function($scope, $state, Stock) {
     Stock.findByCompany($scope)
     .then(function(stocksFound) {
       $scope.stocksFound = stocksFound.data;
-      console.log('stocks Found is: ', $scope.stocksFound);
     }); 
   }; 
 
@@ -29,11 +28,9 @@ app.controller('addStocksCtrl', function($scope, $state, Stock) {
 }); 
 
 app.controller('listStocksCtrl', function($scope, $state, Stock) {
-  console.log('list stocks Ctrl');
   $scope.stocksTracked = Stock.getAllAddedStocks(); 
   $scope.deleteStock = function(index) {
-    var testArray = Stock.deleteTrackedStock();
-    console.log('array is now after delete', testArray);
+    Stock.deleteTrackedStock();
   }; 
 });
 
@@ -44,25 +41,22 @@ app.service('Stock', function($http) {
     return $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Lookup/jsonp?input=${$scope.stocksFound.companyInput}&callback=JSON_CALLBACK`);    
   }; 
   this.getStockData = function($scope) {
-    console.log('inside get stock data');
     return $http.jsonp(`http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=${$scope.stockSelected.Symbol}&callback=JSON_CALLBACK`);    
   };
   this.addStock = function(stockObject) {
-    console.log('inside add stock'); 
-    this.arrayOfStocks.push(stockObject);
-    console.log('array of stocks is now: ', this.arrayOfStocks);
+    var repeatStock = this.arrayOfStocks.find(function(item, index){
+      if(item.data.Symbol === stockObject.data.Symbol){
+        return item; 
+      }
+    });
+    if(!repeatStock) this.arrayOfStocks.push(stockObject);    
     return this.arrayOfStocks; 
   }; 
-  this.deleteTrackedStock = function(index){
-    console.log('inside delete stock');
-    console.log('array of stocks BEFORE delete is: ', this.arrayOfStocks);
+  this.deleteTrackedStock = function(index){   
     this.arrayOfStocks.splice(index, 1);
-    console.log('array of stocks after delete is: ', this.arrayOfStocks);
     return this.arrayOfStocks; 
   }
   this.getAllAddedStocks = function() {
-    console.log('inside get all added stocks');
-    console.log('this is the array of stocks in get all added stocks', this.arrayOfStocks);
     return this.arrayOfStocks;
   };
 });
