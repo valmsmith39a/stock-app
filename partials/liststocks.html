@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='stock in stocksTracked' ng-if='stocksTracked.length'> 
+      <tr ng-repeat='stock in stocksTracked' ng-if='stocksTracked.length'>
         <td>{{stock.data.Symbol}}</td>
         <td>{{stock.data.Name}}</td>
         <td>{{stock.data.LastPrice | currency}}</td>
