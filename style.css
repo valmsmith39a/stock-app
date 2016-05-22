@@ -21,12 +21,12 @@ body {
 }
 
 .stocks-list {
-  text-align: center;
-  margin-left: 5px;
+  text-align:center;
+  margin-left:5px;
 }
 
 .stocks-list-title {
-  text-align: center;
+  text-align:center;
   margin:50px;
 }
 
