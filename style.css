@@ -1,12 +1,13 @@
 body {
   /*background-image: url('./supporting/images/taurus_the_bull.jpg');*/
-  background-image: url('./supporting/images/city_image.jpeg');
-  background-size: 100vw;
+  background-image:url('./supporting/images/city_image.jpeg');
+  background-size:100vw;
   background-repeat:no-repeat;
   color: white;
 }
 
 #find-button {
+  height:27px;
   color:black;
 }
 
@@ -20,5 +21,5 @@ body {
 }
 
 .list-data {
-  color: black;
+  color:black;
 }
