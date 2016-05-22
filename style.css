@@ -20,6 +20,16 @@ body {
   background-color:white;
 }
 
+.stocks-list {
+  text-align: center;
+  margin-left: 5px;
+}
+
+.stocks-list-title {
+  text-align: center;
+  margin:50px;
+}
+
 .list-data {
   color:black;
 }
