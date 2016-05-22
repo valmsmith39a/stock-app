@@ -7,7 +7,7 @@ body {
 }
 
 #find-button {
-  height:27px;
+  /*height:27px;*/
   color:black;
 }
 
@@ -32,4 +32,5 @@ body {
 
 .list-data {
   color:black;
+  margin-left: 10px;
 }
